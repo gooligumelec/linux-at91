@@ -130,6 +130,36 @@
 
 			qspi1: spi@f0024000 {
 				status = "okay";
+                flash@0 {
+
+                    /delete-node/bootloader@00010000;
+
+                    /delete-node/bootloaderenv@000b0000;
+
+                    /delete-node/dtb@000c0000;
+
+                    /delete-node/kernel@000e0000;
+
+                    bootloaderenv@00010000 {
+                        label = "u-boot env";
+                        reg = <0x00010000 0x00010000>;
+                    };
+
+                    bootloader@00020000 {
+                        label = "u-boot";
+                        reg = <0x00020000 0x000a0000>;
+                    };
+
+                    fit@000c0000 {
+                        label = "FIT image";
+                        reg = <0x000c0000 0x00400000>;
+                    };
+
+                    spare@004c0000 {
+                        label = "spare";
+                        reg = <0x004c0000 0x0340000>;
+                    };
+                };
 			};
 
 			spi0: spi@f8000000 {
